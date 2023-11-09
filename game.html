@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bustabit Clone Game</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Add custom styles here if needed */
+        #game-canvas {
+            border: 2px solid #fff;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
 </head>
 <body class="bg-gray-800 text-white">
 
@@ -17,11 +25,14 @@
         </div>
     </header>
     <main class="container mx-auto px-4">
-        <canvas id="game-canvas" class="bg-black my-4"></canvas>
+        <canvas id="game-canvas" width="800" height="400"></canvas>
         <div id="betting-form" class="my-4">
-            <input type="number" name="bet-amount" placeholder="Enter your bet amount" class="text-gray-800 p-2">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <input type="number" id="bet-amount" placeholder="Enter your bet amount" class="text-gray-800 p-2">
+            <button id="place-bet" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Place Bet
+            </button>
+            <button id="stop-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Stop Bet
             </button>
         </div>
         <div id="wallet" class="my-4">
