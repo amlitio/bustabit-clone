@@ -1,0 +1,36 @@
+/* style.css */
+
+/* Example of custom styles if needed */
+body, html {
+  height: 100%;
+}
+
+#game-canvas {
+  display: block; /* Removes canvas default inline display */
+  background-color: #000; /* Canvas background */
+  margin: 0 auto; /* Centers the canvas element */
+  width: 100%; /* Sets the canvas width to fit its container */
+  max-width: 800px; /* Maximum width of the canvas */
+  border: 1px solid #ffffff; /* Border around the canvas */
+}
+
+/* Responsive table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4A5568;
+}
+
+tr:nth-child(even) {
+  background-color: #2D3748;
+}
+
+/* Add more custom styles as needed */
