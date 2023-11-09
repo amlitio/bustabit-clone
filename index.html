@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bustabit Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800 text-white">
+
+    <div class="container mx-auto px-4">
+        <h1 class="text-xl font-bold text-center my-4">Welcome to Bustabit Clone</h1>
+        <div id="login-form" class="max-w-md mx-auto">
+            <input type="text" id="username" placeholder="Username" class="w-full p-2 mb-2 text-gray-800">
+            <input type="password" id="password" placeholder="Password" class="w-full p-2 mb-2 text-gray-800">
+            <button onclick="login()" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Login
+            </button>
+            <button onclick="register()" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2">
+                Register
+            </button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
