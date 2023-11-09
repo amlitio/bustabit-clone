@@ -2,11 +2,11 @@
 
 // Initialize the user database in localStorage if it doesn't exist
 function initializeUsersDB() {
-  if (!getLocalStorage('users')) {
-    setLocalStorage('users', JSON.stringify({}));
+  if (!localStorage.getItem('users')) {
+    localStorage.setItem('users', JSON.stringify({}));
   }
-  if (!getLocalStorage('balance')) {
-    setLocalStorage('balance', '1000'); // Starting balance for the sake of example
+  if (!localStorage.getItem('balance')) {
+    localStorage.setItem('balance', '1000'); // Starting balance for the sake of example
   }
 }
 
@@ -14,13 +14,13 @@ function initializeUsersDB() {
 function register() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  const users = JSON.parse(getLocalStorage('users'));
+  const users = JSON.parse(localStorage.getItem('users'));
   if (users[username]) {
     alert('User already exists!');
     return;
   }
   users[username] = { password, balance: 1000 }; // Assign a default balance
-  setLocalStorage('users', JSON.stringify(users));
+  localStorage.setItem('users', JSON.stringify(users));
   alert('Registration successful!');
 }
 
@@ -28,10 +28,10 @@ function register() {
 function login() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  const users = JSON.parse(getLocalStorage('users'));
+  const users = JSON.parse(localStorage.getItem('users'));
   const userData = users[username];
   if (userData && userData.password === password) {
-    setLocalStorage('session', username);
+    localStorage.setItem('session', username);
     window.location.href = 'game.html'; // Redirect to game page
   } else {
     alert('Invalid username or password!');
@@ -44,13 +44,13 @@ function logout() {
   window.location.href = 'index.html'; // Redirect to home page
 }
 
-// Utility functions for localStorage access
-function getLocalStorage(key) {
-  return localStorage.getItem(key);
-}
-
-function setLocalStorage(key, value) {
-  localStorage.setItem(key, value);
+// Check if the user is logged in when the game page loads
+function checkLogin() {
+  if (!localStorage.getItem('session')) {
+    window.location.href = 'index.html'; // Redirect to login page if not logged in
+  } else {
+    updateBalanceDisplay(); // Update balance display if logged in
+  }
 }
 
 // Game logic
@@ -65,13 +65,13 @@ function startGame() {
   gameRunning = true;
   gameMultiplier = 1.0;
   userBet = parseFloat(document.getElementById('bet-amount').value) || 0;
-  const currentBalance = parseFloat(getLocalStorage('balance'));
+  const currentBalance = parseFloat(localStorage.getItem('balance'));
   if (userBet <= 0 || userBet > currentBalance) {
     alert('Invalid bet amount!');
     gameRunning = false;
     return;
   }
-  setLocalStorage('balance', (currentBalance - userBet).toString());
+  localStorage.setItem('balance', (currentBalance - userBet).toString());
   updateBalanceDisplay();
   window.requestAnimationFrame(updateGame);
 }
@@ -94,8 +94,8 @@ document.getElementById('stop-button').addEventListener('click', function() {
   if (gameRunning) {
     gameRunning = false;
     const payout = userBet * gameMultiplier;
-    const newBalance = parseFloat(getLocalStorage('balance')) + payout;
-    setLocalStorage('balance', newBalance.toString());
+    const newBalance = parseFloat(localStorage.getItem('balance')) + payout;
+    localStorage.setItem('balance', newBalance.toString());
     updateBalanceDisplay();
     console.log(`Bet stopped at multiplier: ${gameMultiplier.toFixed(2)}x, payout: ${payout}`);
     window.cancelAnimationFrame(animationFrameId);
@@ -105,12 +105,35 @@ document.getElementById('stop-button').addEventListener('click', function() {
 function updateBalanceDisplay() {
   const balanceElement = document.getElementById('balance');
   if (balanceElement) {
-    balanceElement.textContent = getLocalStorage('balance');
+    balanceElement.textContent = localStorage.getItem('balance');
   }
 }
 
-// Call this function when the game page loads to display the user's balance
-updateBalanceDisplay();
+// Leaderboard logic
+function updateLeaderboard() {
+  const users = JSON.parse(localStorage.getItem('users'));
+  const leaderboardData = Object.keys(users).map(username => ({
+    name: username,
+    balance: users[username].balance
+  }));
+
+  // Sort users by balance in descending order
+  leaderboardData.sort((a, b) => b.balance - a.balance);
+
+  // Update the leaderboard table
+  const leaderboardTable = document.getElementById('leaderboard-table-body');
+  leaderboardTable.innerHTML = ''; // Clear existing leaderboard entries
+  leaderboardData.forEach(user => {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td>${user.name}</td><td>${user.balance}</td>`;
+    leaderboardTable.appendChild(row);
+  });
+}
+
+// Call this function when the game page loads
+checkLogin();
+updateLeaderboard();
 
 // Initialize the user database when the script loads
 initializeUsersDB();
+
