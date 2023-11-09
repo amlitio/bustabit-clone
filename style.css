@@ -1,0 +1,74 @@
+/* style.css */
+
+/* Custom styles for the canvas */
+#game-canvas {
+  border: 2px solid #fff;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #000; /* Canvas background */
+}
+
+/* Ensure the canvas is responsive and maintains aspect ratio */
+@media (max-width: 640px) {
+  #game-canvas {
+    width: 90vw;
+    height: auto; /* Adjust height accordingly or keep it unset */
+  }
+}
+
+/* Styles for the wallet balance display */
+#wallet {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Styles for the betting form */
+#betting-form {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#betting-form input[type="number"] {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  width: 60%; /* Responsive width */
+}
+
+/* Styles for buttons */
+button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+/* Leaderboard styles */
+#leaderboard {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+#leaderboard table {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-collapse: collapse;
+}
+
+#leaderboard th,
+#leaderboard td {
+  text-align: left;
+  padding: 0.5rem;
+  border: 1px solid #fff; /* Add border to table cells */
+}
+
+#leaderboard th {
+  background-color: #4A5568;
+}
+
+#leaderboard tr:nth-child(even) {
+  background-color: #2D3748;
+}
+
+/* Add more custom styles as needed */
