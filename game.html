@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bustabit Clone Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800 text-white">
+
+    <header class="p-4">
+        <div id="user-info" class="flex justify-between items-center">
+            <span id="user-name"></span>
+            <button onclick="logout()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Logout
+            </button>
+        </div>
+    </header>
+    <main class="container mx-auto px-4">
+        <canvas id="game-canvas" class="bg-black my-4"></canvas>
+        <div id="betting-form" class="my-4">
+            <input type="number" name="bet-amount" placeholder="Enter your bet amount" class="text-gray-800 p-2">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Place Bet
+            </button>
+        </div>
+        <div id="wallet" class="my-4">
+            <h3 class="font-bold">Wallet</h3>
+            <p>Balance: <span id="balance"></span></p>
+        </div>
+        <div id="leaderboard" class="my-4">
+            <h3 class="font-bold">Leaderboard</h3>
+            <table class="min-w-full">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Player</th>
+                        <th class="px-4 py-2">Winnings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Leaderboard entries will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
