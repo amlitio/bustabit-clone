@@ -5,26 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bustabit Clone Game</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Add custom styles here if needed */
-        #game-canvas {
-            border: 2px solid #fff;
-            display: block;
-            margin: 20px auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-800 text-white">
-
-    <header class="p-4">
-        <div id="user-info" class="flex justify-between items-center">
+<body class="bg-gray-800 text-white flex flex-col items-center justify-center h-screen">
+    <header class="text-center p-4 w-full">
+        <div id="user-info" class="flex justify-between items-center max-w-md mx-auto">
             <span id="user-name"></span>
             <button onclick="logout()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Logout
             </button>
         </div>
     </header>
-    <main class="container mx-auto px-4">
+    <main class="mb-auto w-full flex flex-col items-center">
         <canvas id="game-canvas" width="800" height="400"></canvas>
         <div id="betting-form" class="my-4">
             <input type="number" id="bet-amount" placeholder="Enter your bet amount" class="text-gray-800 p-2">
@@ -39,9 +31,9 @@
             <h3 class="font-bold">Wallet</h3>
             <p>Balance: <span id="balance"></span></p>
         </div>
-        <div id="leaderboard" class="my-4">
+        <div id="leaderboard" class="my-4 w-full px-2">
             <h3 class="font-bold">Leaderboard</h3>
-            <table class="min-w-full">
+            <table class="w-full">
                 <thead>
                     <tr>
                         <th class="px-4 py-2">Player</th>
@@ -54,7 +46,6 @@
             </table>
         </div>
     </main>
-
     <script src="js/main.js"></script>
 </body>
 </html>
